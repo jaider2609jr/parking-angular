@@ -1,21 +1,27 @@
 <div id="login">
     <div class="card shadow p-3 mb-5 bg-light rounded" style="width: 25rem; margin:0 auto">
-        <form action="" class="px-4 d-flex">
+        <form [formGroup]="loginUser" (ngSubmit)="onSubmit(loginUser.value)" class="px-4 d-flex">
             <div class="card-body">
-                <div class="text-center mb-2">
+                <div class="text-center">
                     <img class="" src="assets/img/loginImage.png" width="50">
                     <h5 class="card-title mt-3">Inicio de sesion</h5>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Usuario:</label>
-                    <input type="text" class="form-control mb-2">
+                    <input type="text" class="form-control mb-2" formControlName="username">
+                    <span class="text-danger" *ngIf="loginUser.get('username').errors?.required">
+                        username is required
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Contraseña:</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control" formControlName="password">
+                    <span class="text-danger" *ngIf="loginUser.get('password').errors?.required">
+                        password is required
+                    </span>
                 </div>
-                <app-button type="button" content="Iniciar" routerLink="/"></app-button>
+                <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar">
             </div>
         </form>
         <h6 class="text-center">No tienes cuenta? <a routerLink="/registrar-usuario">Registrate aqui!</a></h6>
