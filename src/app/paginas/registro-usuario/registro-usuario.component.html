@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<form action="" class="px-4 d-flex">
+<form [formGroup]="registerUser" (ngSubmit)="onSubmit(registerUser.value)" class="px-4 d-flex">
     <div class="card-body">
         <h5 class="card-title mb-4"><img class="" src="assets/img/register.svg" width="50"> Registro Usuario</h5>
         
@@ -7,66 +7,93 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Usuario:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="username">
+              <div *ngIf="registerUser.get('username').touched || registerUser.get('username').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('username').errors?.required">
+                    username is required
+                </span>
+              </div>
             </div>
             
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">password:</label>
-              <input type="password" class="form-control">
+              <input type="password" class="form-control" formControlName="password">
+              <div *ngIf="registerUser.get('password').touched || registerUser.get('password').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('password').errors?.required">
+                    password is required
+                </span>
+                <span class="text-danger" *ngIf="registerUser.get('password')?.errors?.minlength">
+                  minimo 6 caracteres
+              </span>
+              </div>
             </div>
             
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Primer Nombre:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="pnombre">
+              <div *ngIf="registerUser.get('pnombre').touched || registerUser.get('pnombre').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('pnombre').errors?.required">
+                    Campo requerido
+                </span>
+                
+              </div>
             </div>
           </div>
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Segundo Nombre:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="snombre">
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Primer Apellido:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="papellido">
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Segundo Apellido:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="sapellido">
             </div>
           </div>
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Correo:</label>
-              <input type="email" class="form-control">
+              <input type="email" class="form-control" formControlName="correo">
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">tipo Identificacion:</label>
-              <select name="" id="" class="form-control form-select">
+              <select name="" id="" class="form-control form-select" formControlName="tid">
                 <option selected value="">selecciona</option>
-                <option value="">CC</option>
-                <option value="">TI</option>
-                <option value="">NIT</option>
+                <option value="1">CC</option>
+                <option value="2">TI</option>
+                <option value="3">NIT</option>
               </select>
             </div>
           </div>
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">N° Identificacion:</label>
-              <input type="text" class="form-control">
+              <input type="number" class="form-control" formControlName="nid">
+              <div *ngIf="registerUser.get('nid').touched || registerUser.get('nid').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('nid').errors?.required">
+                    N° identificacion requerido
+                </span>
+                <span class="text-danger" *ngIf="registerUser.get('nid')?.errors?.min">
+                  minimo 6 caracteres
+              </span>
+              </div>
             </div>
           </div>
         </div>
-        <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar">
+        <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar" [disabled]="registerUser.invalid">
       </div>
 </form>
 <app-footer></app-footer>
