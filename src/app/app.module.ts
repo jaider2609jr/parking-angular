@@ -15,6 +15,7 @@ import { RegistroUsuarioComponent } from './paginas/registro-usuario/registro-us
 import { RegistroParqueaderoComponent } from './paginas/registro-parqueadero/registro-parqueadero.component';
 import { RegistroVehiculoComponent } from './paginas/registro-vehiculo/registro-vehiculo.component';
 import { MapComponent } from './componentes/map/map.component';
+import { ErrorComponent } from './paginas/error/error.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MapComponent } from './componentes/map/map.component';
     RegistroUsuarioComponent,
     RegistroParqueaderoComponent,
     RegistroVehiculoComponent,
-    MapComponent
+    MapComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

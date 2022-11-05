@@ -44,6 +44,8 @@ export class MapaComponent implements OnInit {
       this.longitud = e.latlng.lng;
       console.log("Acabas de hacer clic en: \n latitud: " + this.latitud + "\n longitud: " + this.longitud);
   });
+
+    new L.Marker([10.987628, -74.789738]).bindPopup('calle 53#45-10<br>precio:2000').openPopup().addTo(this.map);
   }
   
 
