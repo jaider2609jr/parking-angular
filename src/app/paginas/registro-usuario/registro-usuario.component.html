@@ -10,7 +10,7 @@
               <input type="text" class="form-control" formControlName="username">
               <div *ngIf="registerUser.get('username').touched || registerUser.get('username').dirty">
                 <span class="text-danger" *ngIf="registerUser.get('username').errors?.required">
-                    username is required
+                    nombre de usuario es requerido
                 </span>
               </div>
             </div>
@@ -22,7 +22,7 @@
               <input type="password" class="form-control" formControlName="password">
               <div *ngIf="registerUser.get('password').touched || registerUser.get('password').dirty">
                 <span class="text-danger" *ngIf="registerUser.get('password').errors?.required">
-                    password is required
+                    password es requerido
                 </span>
                 <span class="text-danger" *ngIf="registerUser.get('password')?.errors?.minlength">
                   minimo 6 caracteres
@@ -53,18 +53,37 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Primer Apellido:</label>
               <input type="text" class="form-control" formControlName="papellido">
+              <div *ngIf="registerUser.get('papellido').touched || registerUser.get('papellido').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('papellido').errors?.required">
+                    Campo requerido
+                </span>
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Segundo Apellido:</label>
               <input type="text" class="form-control" formControlName="sapellido">
+              <div *ngIf="registerUser.get('sapellido').touched || registerUser.get('sapellido').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('sapellido').errors?.required">
+                    Campo requerido
+                </span>
+                
+              </div>
             </div>
           </div>
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Correo:</label>
               <input type="email" class="form-control" formControlName="correo">
+              <div *ngIf="registerUser.get('correo').touched || registerUser.get('correo').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('correo').errors?.required">
+                    password es requerido
+                </span>
+                <span class="text-danger" *ngIf="registerUser.get('correo')?.errors?.email">
+                  correo no valido
+              </span>
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
@@ -76,6 +95,12 @@
                 <option value="2">TI</option>
                 <option value="3">NIT</option>
               </select>
+              <div *ngIf="registerUser.get('tid').touched || registerUser.get('tid').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('tid').errors?.required">
+                    Campo requerido
+                </span>
+                
+              </div>
             </div>
           </div>
           <div class="col-md-6  col-lg-4 mt-3">

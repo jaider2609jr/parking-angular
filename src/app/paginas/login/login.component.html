@@ -20,12 +20,15 @@
                     <label for="exampleInputEmail1">Contraseña:</label>
                     <input type="password" class="form-control" formControlName="password">
                     <div *ngIf="loginUser.get('password').touched || loginUser.get('password').dirty">
-                    <span class="text-danger" *ngIf="loginUser.get('password').errors?.required">
-                        password is required
-                    </span>
-                    </div>
+                        <span class="text-danger" *ngIf="loginUser.get('password').errors?.required">
+                            password es requerido
+                        </span>
+                        <span class="text-danger" *ngIf="loginUser.get('password')?.errors?.minlength">
+                          minimo 6 caracteres
+                      </span>
+                      </div>
                 </div>
-                <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar">
+                <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar" [disabled]="loginUser.invalid">
             </div>
         </form>
         <h6 class="text-center">No tienes cuenta? <a routerLink="/registrar-usuario">Registrate aqui!</a></h6>

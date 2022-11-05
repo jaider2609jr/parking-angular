@@ -1,30 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+import { RegistroParqueaderoComponent } from "../../paginas/registro-parqueadero/registro-parqueadero.component";
 
 @Component({
-  selector: 'app-mapa',
-  templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class MapaComponent implements OnInit {
+export class MapComponent implements OnInit {
 
   private map: any;
   coordenada:any;
-  latitud:number;
   longitud:number;
+  latitud:number;
+  @Output() latEvent = new EventEmitter<number>();
+  
 
-  constructor() { } 
-
+  constructor() { }
 
   ngOnInit(): void {
     this.initMap();
   }
 
   private initMap(): void {
-    this.map = L.map("map").setView([10.98719,-74.78814], 15);
+    this.map = L.map("map").setView([10.98719, -74.78814], 15);
 
     const tiles = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -38,22 +40,16 @@ export class MapaComponent implements OnInit {
 
     (L.Control as any).geocoder().addTo(this.map);
 
-    //this.map.on('click', this.onMapClick);
     this.map.on('click', (e)=> {
+      this.coordenada = e.latlng;
       this.latitud = e.latlng.lat;
       this.longitud = e.latlng.lng;
+      this.latEvent.emit(this.coordenada);
       console.log("Acabas de hacer clic en: \n latitud: " + this.latitud + "\n longitud: " + this.longitud);
   });
   }
+
+
   
 
-    private onMapClick(click:any):void{
-        this.coordenada = click.latlng;
-        this.latitud = this.coordenada.lat; // lat  es una propiedad de latlng
-        var longitud = this.coordenada.lng; // lng también es una propiedad de latlng
-        console.log("Acabas de hacer clic en: \n latitud: " + this.latitud + "\n longitud: " + longitud);
-        //return latitud;
-    }
-
-   
 }

@@ -29,8 +29,7 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   onSubmit(form:any): void {
-    console.log('username: ' + form.username);
-    console.log('password: ' + form.password);
+    console.log(form);
   }
 
 }

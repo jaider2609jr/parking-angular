@@ -14,6 +14,7 @@ import { GestionVehiculosComponent } from './paginas/gestion-vehiculos/gestion-v
 import { RegistroUsuarioComponent } from './paginas/registro-usuario/registro-usuario.component';
 import { RegistroParqueaderoComponent } from './paginas/registro-parqueadero/registro-parqueadero.component';
 import { RegistroVehiculoComponent } from './paginas/registro-vehiculo/registro-vehiculo.component';
+import { MapComponent } from './componentes/map/map.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RegistroVehiculoComponent } from './paginas/registro-vehiculo/registro-
     GestionVehiculosComponent,
     RegistroUsuarioComponent,
     RegistroParqueaderoComponent,
-    RegistroVehiculoComponent
+    RegistroVehiculoComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
