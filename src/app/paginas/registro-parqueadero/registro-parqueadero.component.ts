@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { MapComponent } from "../../componentes/map/map.component";
 
 @Component({
   selector: 'app-registro-parqueadero',
@@ -9,8 +8,8 @@ import { MapComponent } from "../../componentes/map/map.component";
 })
 export class RegistroParqueaderoComponent implements OnInit {
   regPark : FormGroup;
-  latitude :number;
-  longitud: number;
+  latitude :number=1;
+  longitud: number=1;
   
   constructor() { }
   
@@ -20,8 +19,8 @@ export class RegistroParqueaderoComponent implements OnInit {
     
     this.regPark = new FormGroup({
       direccion: new FormControl('', Validators.required),
-      longitud: new FormControl('', Validators.required),
-      latitud : new FormControl('', Validators.required),
+      longitud: new FormControl(this.longitud, Validators.required),
+      latitud : new FormControl(this.latitude, [Validators.required]),
       precio: new FormControl('', Validators.required),
       horaA: new FormControl('', Validators.required),
       horaC: new FormControl('', Validators.required),
@@ -29,6 +28,8 @@ export class RegistroParqueaderoComponent implements OnInit {
     });
 
   }
+
+  
 
   ngOnInit(): void {
     this.createForm();

@@ -32,10 +32,10 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">longitud:</label>
-              <input type="text" class="form-control" formControlName="longitud" value="{{longitud}}">
+              <input type="number" class="form-control" formControlName="longitud" value="{{longitud}}">
               <div *ngIf="regPark.get('longitud').touched || regPark.get('longitud').dirty">
-                <span class="text-danger" *ngIf="regPark.get('longitud').errors?.required">
-                    direccion requerida
+                <span class="text-danger" *ngIf="regPark.get('longitud').errors?.required || regPark.get('longitud').value==0 ">
+                    longitud requerida
                 </span>
               </div>
             </div>
@@ -43,10 +43,10 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">latitud:</label>
-              <input type="text" class="form-control" formControlName="latitud" value="{{latitude}}">
+              <input type="number" class="form-control" formControlName="latitud" value="{{latitude}}">
               <div *ngIf="regPark.get('latitud').touched || regPark.get('latitud').dirty">
-                <span class="text-danger" *ngIf="regPark.get('latitud').errors?.required">
-                    direccion requerida
+                <span class="text-danger" *ngIf="regPark.get('latitud').errors?.required || regPark.get('latitud').value==0">
+                    latitud requerida
                 </span>
               </div>
             </div>
