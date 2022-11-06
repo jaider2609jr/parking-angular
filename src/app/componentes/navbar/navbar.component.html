@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-dark py-3 shadow navbar-dark">
+  <div class="container-fluid">
   <a class="navbar-brand text-light px-4" routerLink="/home">ParkingYa</a>
   <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,14 +14,18 @@
         <li class="nav-item">
           <a class="nav-link  text-light" routerLink="/mapa">Mapa</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link  text-light" routerLink="/registrar-parqueaderos">Registrar parqueaderos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  text-light" routerLink="/gestionar-parqueaderos">Mis parqueaderos</a>
+        </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link  text-light" routerLink="/registrar-parqueaderos">Registrar parqueaderos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link  text-light" routerLink="/gestionar-parqueaderos">Mis parqueaderos</a>
-      </li>
+    <ul class="navbar-nav ms-auto ">
+      <ng-container *ngIf="authService.loggedIn()">
+        <a class="nav-link  text-light" style="cursor:pointer;"(click)="authService.logout()">Cerrar Sesion</a>
+      </ng-container>
     </ul>
   </div>
+</div>
 </nav>

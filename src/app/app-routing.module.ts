@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { ErrorComponent } from './paginas/error/error.component';
 import { GestionParqueaderosComponent } from './paginas/gestion-parqueaderos/gestion-parqueaderos.component';
 import { GestionVehiculosComponent } from './paginas/gestion-vehiculos/gestion-vehiculos.component';
@@ -14,11 +15,11 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'registrar-usuario', component: RegistroUsuarioComponent },
-  { path: 'registrar-vehiculos', component: RegistroVehiculoComponent},
-  { path: 'registrar-parqueaderos', component: RegistroParqueaderoComponent},
-  { path: 'mapa', component: MapaComponent},
-  { path: 'gestionar-parqueaderos', component: GestionParqueaderosComponent},
-  { path: 'gestionar-vehiculos', component: GestionVehiculosComponent},
+  { path: 'registrar-vehiculos', component: RegistroVehiculoComponent,canActivate:[AuthGuard]},
+  { path: 'registrar-parqueaderos', component: RegistroParqueaderoComponent,canActivate:[AuthGuard]},
+  { path: 'mapa', component: MapaComponent,canActivate:[AuthGuard]},
+  { path: 'gestionar-parqueaderos', component: GestionParqueaderosComponent,canActivate:[AuthGuard]},
+  { path: 'gestionar-vehiculos', component: GestionVehiculosComponent,canActivate:[AuthGuard]},
   { path: '**', component:ErrorComponent}
 ];
 

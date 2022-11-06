@@ -35,9 +35,9 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Primer Nombre:</label>
-              <input type="text" class="form-control" formControlName="pnombre">
-              <div *ngIf="registerUser.get('pnombre').touched || registerUser.get('pnombre').dirty">
-                <span class="text-danger" *ngIf="registerUser.get('pnombre').errors?.required">
+              <input type="text" class="form-control" formControlName="pNombre">
+              <div *ngIf="registerUser.get('pNombre').touched || registerUser.get('pNombre').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('pNombre').errors?.required">
                     Campo requerido
                 </span>
                 
@@ -47,15 +47,15 @@
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Segundo Nombre:</label>
-              <input type="text" class="form-control" formControlName="snombre">
+              <input type="text" class="form-control" formControlName="sNombre">
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Primer Apellido:</label>
-              <input type="text" class="form-control" formControlName="papellido">
-              <div *ngIf="registerUser.get('papellido').touched || registerUser.get('papellido').dirty">
-                <span class="text-danger" *ngIf="registerUser.get('papellido').errors?.required">
+              <input type="text" class="form-control" formControlName="pApellido">
+              <div *ngIf="registerUser.get('pApellido').touched || registerUser.get('pApellido').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('pApellido').errors?.required">
                     Campo requerido
                 </span>
               </div>
@@ -64,9 +64,9 @@
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">Segundo Apellido:</label>
-              <input type="text" class="form-control" formControlName="sapellido">
-              <div *ngIf="registerUser.get('sapellido').touched || registerUser.get('sapellido').dirty">
-                <span class="text-danger" *ngIf="registerUser.get('sapellido').errors?.required">
+              <input type="text" class="form-control" formControlName="sApellido">
+              <div *ngIf="registerUser.get('sApellido').touched || registerUser.get('sApellido').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('sApellido').errors?.required">
                     Campo requerido
                 </span>
                 
@@ -90,14 +90,14 @@
           <div class="col-md-6 col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">tipo Identificacion:</label>
-              <select name="" id="" class="form-control form-select" formControlName="tid">
+              <select name="" id="" class="form-control form-select" formControlName="tipoId">
                 <option selected value="">selecciona</option>
-                <option value="1">CC</option>
-                <option value="2">TI</option>
-                <option value="3">NIT</option>
+                <option *ngFor="let id of tipoid" value="{{id.idDet}}" >
+                  {{id.nombre}}
+                </option>
               </select>
-              <div *ngIf="registerUser.get('tid').touched || registerUser.get('tid').dirty">
-                <span class="text-danger" *ngIf="registerUser.get('tid').errors?.required">
+              <div *ngIf="registerUser.get('tipoId').touched || registerUser.get('tipoId').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('tipoId').errors?.required">
                     Campo requerido
                 </span>
                 
@@ -107,12 +107,12 @@
           <div class="col-md-6  col-lg-4 mt-3">
             <div class="form-group">
               <label for="exampleInputEmail1">N° Identificacion:</label>
-              <input type="number" class="form-control" formControlName="nid">
-              <div *ngIf="registerUser.get('nid').touched || registerUser.get('nid').dirty">
-                <span class="text-danger" *ngIf="registerUser.get('nid').errors?.required">
+              <input type="number" class="form-control" formControlName="numeroId">
+              <div *ngIf="registerUser.get('numeroId').touched || registerUser.get('numeroId').dirty">
+                <span class="text-danger" *ngIf="registerUser.get('numeroId').errors?.required">
                     N° identificacion requerido
                 </span>
-                <span class="text-danger" *ngIf="registerUser.get('nid')?.errors?.min">
+                <span class="text-danger" *ngIf="registerUser.get('numeroId')?.errors?.min">
                   minimo 6 caracteres
               </span>
               </div>

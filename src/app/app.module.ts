@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,9 @@ import { RegistroParqueaderoComponent } from './paginas/registro-parqueadero/reg
 import { RegistroVehiculoComponent } from './paginas/registro-vehiculo/registro-vehiculo.component';
 import { MapComponent } from './componentes/map/map.component';
 import { ErrorComponent } from './paginas/error/error.component';
+import { AuthService } from './servicios/auth.service';
+import { ParametrosService } from './servicios/parametros.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,14 @@ import { ErrorComponent } from './paginas/error/error.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ParametrosService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

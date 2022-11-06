@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,11 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   loginUser: FormGroup;
-  constructor() { }
+  message: string='';
+  constructor(
+    private authService:AuthService,
+    private router:Router
+    ) { }
 
   createForm(): void {
     this.loginUser = new FormGroup({
@@ -26,6 +32,21 @@ export class LoginComponent implements OnInit {
   onSubmit(form:any): void {
     console.log('username: ' + form.username);
     console.log('password: ' + form.password);
+    this.authService.loginIn(form)
+    .subscribe(res=>{
+      console.log(res.status)
+      if (res.status=='not_found') {
+        this.message=res.message;
+        console.log(this.message);
+      }else if (res.status=='error_password') {
+        this.message=res.message;
+        console.log(this.message);
+      }else if (res.status=='ok'){
+        localStorage.setItem('token',res.token);
+        this.router.navigate(['/home'])
+      }
+    },
+    err => console.log(err))
   }
 
 }
