@@ -21,6 +21,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Direccion:</label>
+              <input type="hidden" class="form-control" formControlName="idUsuarioPar">
               <input type="text" class="form-control" formControlName="direccion">
               <div *ngIf="regPark.get('direccion').touched || regPark.get('direccion').dirty">
                 <span class="text-danger" *ngIf="regPark.get('direccion').errors?.required">

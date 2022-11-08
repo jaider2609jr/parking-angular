@@ -17,35 +17,6 @@ export class MapaComponent implements OnInit {
   coordenada: any;
   latitud: number;
   longitud: number;
- 
-  mapPar: any = [
-    {
-      "created_at": "Sat, 05 Nov 2022 17:42:57 GMT",
-      "direccion": "calle 53#45-10",
-      "estado": 1,
-      "horaApertura": "13:30:00",
-      "horaCierre": "19:50:00",
-      "idParquedero": 1,
-      "idUsuarioPar": 1,
-      "latitud": 10.987628,
-      "longitud": -74.789738,
-      "precio": 2000,
-      "puestos": 2
-    },
-    {
-      "created_at": "Mon, 07 Nov 2022 17:00:21 GMT",
-      "direccion": "calle 11 #7d-12",
-      "estado": 1,
-      "horaApertura": "12:30:00",
-      "horaCierre": "19:50:00",
-      "idParquedero": 2,
-      "idUsuarioPar": 1,
-      "latitud": 10.980838409619334,
-      "longitud": -74.7927761077881,
-      "precio": 1000,
-      "puestos": 2
-    }
-  ]
 
   constructor(
     private parqueaderoService: ParqueaderoService
@@ -54,7 +25,7 @@ export class MapaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadPar();
+    //this.loadPar();
     this.initMap();
   }
 
@@ -62,6 +33,9 @@ export class MapaComponent implements OnInit {
     this.parqueaderoService.getParqueaderos().subscribe(res => {
       console.log('>>>>>', res);
       this.parqueaderos = res;
+      res.map(par=>{
+        new L.Marker([par.latitud, par.longitud]).bindPopup(`${par.direccion}<br>precio:${par.precio}`).openPopup().addTo(this.map);
+      })
       
     },
       err => console.log(err)
@@ -69,7 +43,7 @@ export class MapaComponent implements OnInit {
   }
 
   private initMap(): void {
-    this.map = L.map("map").setView([10.98719, -74.78814], 15);
+    this.map = L.map("map").setView([10.98719, -74.78814], 14);
 
     const tiles = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -91,7 +65,7 @@ export class MapaComponent implements OnInit {
       this.longitud = e.latlng.lng;
       console.log("Acabas de hacer clic en: \n latitud: " + this.latitud + "\n longitud: " + this.longitud);
     });
-    
+    this.loadPar();
     console.log('map-->>',this.parqueaderos)
     //this.loadParToMap();
     /*for (const par of this.mapPar) {

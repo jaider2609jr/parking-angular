@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginUser: FormGroup;
+  user_id: number=0;
   message: string='';
   constructor(
     private authService:AuthService,
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         console.log(this.message);
       }else if (res.status=='ok'){
         localStorage.setItem('token',res.token);
+        this.user_id = res.user_id
         this.router.navigate(['/home'])
       }
     },
