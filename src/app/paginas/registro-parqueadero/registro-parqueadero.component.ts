@@ -35,8 +35,8 @@ export class RegistroParqueaderoComponent implements OnInit {
       longitud: new FormControl(this.longitud, Validators.required),
       latitud : new FormControl(this.latitude, [Validators.required]),
       precio: new FormControl('', Validators.required),
-      horaA: new FormControl('', Validators.required),
-      horaC: new FormControl('', Validators.required),
+      horaApertura: new FormControl('', Validators.required),
+      horaCierre: new FormControl('', Validators.required),
       puestos : new FormControl('', Validators.required)
     });
 

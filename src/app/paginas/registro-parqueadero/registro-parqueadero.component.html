@@ -66,9 +66,9 @@
           <div class="col-md-6  col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Hora de Apertura:</label>
-              <input type="time" class="form-control" formControlName="horaA">
-              <div *ngIf="regPark.get('horaA').touched || regPark.get('horaA').dirty">
-                <span class="text-danger" *ngIf="regPark.get('horaA').errors?.required">
+              <input type="time" class="form-control" formControlName="horaApertura">
+              <div *ngIf="regPark.get('horaApertura').touched || regPark.get('horaApertura').dirty">
+                <span class="text-danger" *ngIf="regPark.get('horaApertura').errors?.required">
                     hora apertura requerida
                 </span>
               </div>
@@ -77,9 +77,9 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Hora de Cierre:</label>
-              <input type="time" class="form-control" formControlName="horaC">
-              <div *ngIf="regPark.get('horaC').touched || regPark.get('horaC').dirty">
-                <span class="text-danger" *ngIf="regPark.get('horaC').errors?.required">
+              <input type="time" class="form-control" formControlName="horaCierre">
+              <div *ngIf="regPark.get('horaCierre').touched || regPark.get('horaCierre').dirty">
+                <span class="text-danger" *ngIf="regPark.get('horaCierre').errors?.required">
                     hora cierre requerida
                 </span>
               </div>
