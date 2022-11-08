@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { ParqueaderoI } from 'src/app/interfaces/parqueadero';
+import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 
 @Component({
   selector: 'app-registro-parqueadero',
@@ -8,10 +11,14 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class RegistroParqueaderoComponent implements OnInit {
   regPark : FormGroup;
-  latitude :number=1;
-  longitud: number=1;
+  latitude :number=0;
+  longitud: number=0;
+  lat: number;
   
-  constructor() { }
+  constructor(
+    private parqueaderoService: ParqueaderoService,
+    private router: Router
+  ) { }
   
 
   
@@ -35,14 +42,21 @@ export class RegistroParqueaderoComponent implements OnInit {
     this.createForm();
   }
 
-  onSubmit(form:any): void {
-    console.log(form);
+  onSubmit(par:ParqueaderoI): void {
+    console.log(par);
+    this.parqueaderoService.saveParqueaderos(par)
+    .subscribe(res=>{
+      console.log(res.message);
+      this.router.navigate(['/mapa']);
+    },
+    err=>console.log(err));
     
   }
   recibirLat(data:any): void {
     this.latitude = data.lat;
     this.longitud = data.lng;
-    console.log(">>>>>"+this.latitude);
+    
+    //console.log(">>>>>"+this.latitude);
   }
 
 }

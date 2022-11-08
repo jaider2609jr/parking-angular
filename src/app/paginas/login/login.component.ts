@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { LoginI } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  onSubmit(form:any): void {
+  onSubmit(form:LoginI): void {
     console.log('username: ' + form.username);
     console.log('password: ' + form.password);
     this.authService.loginIn(form)
@@ -48,5 +49,6 @@ export class LoginComponent implements OnInit {
     },
     err => console.log(err))
   }
+  
 
 }
