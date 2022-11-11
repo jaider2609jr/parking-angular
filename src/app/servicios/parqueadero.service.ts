@@ -20,6 +20,10 @@ export class ParqueaderoService {
   getParqueaderosById(id:number):any{
     return this.http.get<RespParI>(this.URL+'/parqueaderos/activos/'+id);
   }
+
+  getParqueaderosByIdPar(id:number):any{
+    return this.http.get<RespParI>(this.URL+'/parqueaderos/'+id);
+  }
   
   saveParqueaderos(parqueadero:ParqueaderoI):any{
     return this.http.post<ParResI>(this.URL+'/parqueaderos',parqueadero);
