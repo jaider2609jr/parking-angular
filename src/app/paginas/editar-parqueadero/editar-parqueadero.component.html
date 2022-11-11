@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+<form [formGroup]="regPark" (ngSubmit)="onSubmit(regPark.value)" class="px-4 d-flex">
+    <div class="card-body">
+        <h5 class="card-title mb-4"><img class="" src="assets/img/parqueadero-icono.png" width="50"> Editar Parqueadero</h5>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <app-map (latEvent)="recibirLat($event)"></app-map>
+          </div>
+          <!--<div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Usuario:</label>
+              <select name="" id="" class="form-control form-select">
+                <option value="">Jaider</option>
+                <option value="">Andres</option>
+                <option value="">Cris</option>
+              </select>
+            </div>
+            
+          </div>-->
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Direccion:</label>
+              <input type="hidden" class="form-control" formControlName="idUsuarioPar">
+              <input type="text" class="form-control" formControlName="direccion">
+              <div *ngIf="regPark.get('direccion').touched || regPark.get('direccion').dirty">
+                <span class="text-danger" *ngIf="regPark.get('direccion').errors?.required">
+                    direccion requerida
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">longitud:</label>
+              <input type="number" class="form-control" formControlName="longitud" [(ngModel)]="longitud">
+              <div *ngIf="regPark.get('longitud').touched || regPark.get('longitud').dirty">
+                <span class="text-danger" *ngIf="regPark.get('longitud').errors?.required || regPark.get('longitud').value==0 ">
+                    longitud requerida
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">latitud:</label>
+              <input type="number" class="form-control" formControlName="latitud" [(ngModel)]="latitude">
+              <div *ngIf="regPark.get('latitud').touched || regPark.get('latitud').dirty">
+                <span class="text-danger" *ngIf="regPark.get('latitud').errors?.required || regPark.get('latitud').value==0">
+                    latitud requerida
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Precio:</label>
+              <input type="number" class="form-control" formControlName="precio">
+              <div *ngIf="regPark.get('precio').touched || regPark.get('precio').dirty">
+                <span class="text-danger" *ngIf="regPark.get('precio').errors?.required">
+                    precio requerido
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6  col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Hora de Apertura:</label>
+              <input type="time" class="form-control" formControlName="horaApertura">
+              <div *ngIf="regPark.get('horaApertura').touched || regPark.get('horaApertura').dirty">
+                <span class="text-danger" *ngIf="regPark.get('horaApertura').errors?.required">
+                    hora apertura requerida
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Hora de Cierre:</label>
+              <input type="time" class="form-control" formControlName="horaCierre">
+              <div *ngIf="regPark.get('horaCierre').touched || regPark.get('horaCierre').dirty">
+                <span class="text-danger" *ngIf="regPark.get('horaCierre').errors?.required">
+                    hora cierre requerida
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Disponibilidad de puestos:</label>
+              <input type="number" class="form-control" formControlName="puestos">
+              <div *ngIf="regPark.get('puestos').touched || regPark.get('puestos').dirty">
+                <span class="text-danger" *ngIf="regPark.get('puestos').errors?.required">
+                    campo requerida
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar" [disabled]="regPark.invalid">
+      </div>
+</form>
+<app-footer></app-footer>

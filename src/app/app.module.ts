@@ -20,6 +20,8 @@ import { ErrorComponent } from './paginas/error/error.component';
 import { AuthService } from './servicios/auth.service';
 import { ParametrosService } from './servicios/parametros.service';
 import { AuthGuard } from './auth.guard';
+import { ParqueaderosBorradosComponent } from './paginas/parqueaderos-borrados/parqueaderos-borrados.component';
+import { EditarParqueaderoComponent } from './paginas/editar-parqueadero/editar-parqueadero.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AuthGuard } from './auth.guard';
     RegistroParqueaderoComponent,
     RegistroVehiculoComponent,
     MapComponent,
-    ErrorComponent
+    ErrorComponent,
+    ParqueaderosBorradosComponent,
+    EditarParqueaderoComponent
   ],
   imports: [
     BrowserModule,

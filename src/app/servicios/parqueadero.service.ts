@@ -16,10 +16,25 @@ export class ParqueaderoService {
   getParqueaderos():any{
     return this.http.get<RespParI>(this.URL+'/parqueaderos');
   }
+
+  getParqueaderosById(id:number):any{
+    return this.http.get<RespParI>(this.URL+'/parqueaderos/activos/'+id);
+  }
   
   saveParqueaderos(parqueadero:ParqueaderoI):any{
     return this.http.post<ParResI>(this.URL+'/parqueaderos',parqueadero);
   }
 
+  deleteParqueadero(id:number):any{
+    return this.http.put<ParResI>(this.URL+'/parqueaderos/eliminar/'+id,'');
+  }
+
+  getParInactivos(id:number):any{
+    return this.http.get<RespParI>(this.URL+'/parqueaderos/inactivos/'+id);
+  }
+
+  recuperarPar(id:number):any{
+    return this.http.put<ParResI>(this.URL+'/parqueaderos/recuperar/'+id,'');
+  }
 
 }
