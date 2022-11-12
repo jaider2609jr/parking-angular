@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ParqueaderoI } from 'src/app/interfaces/parqueadero';
+import { ParkI, ParqueaderoI } from 'src/app/interfaces/parqueadero';
 import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 
 @Component({
@@ -13,14 +13,23 @@ import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 export class EditarParqueaderoComponent implements OnInit {
 
   regPark : FormGroup;
-  latitude :number=0;
-  longitud: number=0;
   lat: number;
+  
   helper = new JwtHelperService();
   decode_token = this.helper.decodeToken(localStorage.getItem('token'));
 
   id_user:number = this.decode_token.public_id;
-  
+  datosPar:ParkI = {
+    idParquedero:0,
+    idUsuarioPar:this.id_user,
+    direccion:'',
+    longitud:0,
+    latitud:0,
+    precio:0,
+    horaApertura:'',
+    horaCierre:'',
+    puestos:0
+  };
   
   constructor(
     private parqueaderoService: ParqueaderoService,
@@ -33,8 +42,8 @@ export class EditarParqueaderoComponent implements OnInit {
     this.regPark = new FormGroup({
       idUsuarioPar : new FormControl(this.id_user),
       direccion: new FormControl('', Validators.required),
-      longitud: new FormControl(this.longitud, Validators.required),
-      latitud : new FormControl(this.latitude, [Validators.required]),
+      longitud: new FormControl(this.datosPar.longitud, Validators.required),
+      latitud : new FormControl(this.datosPar.latitud, [Validators.required]),
       precio: new FormControl('', Validators.required),
       horaApertura: new FormControl('', Validators.required),
       horaCierre: new FormControl('', Validators.required),
@@ -46,24 +55,35 @@ export class EditarParqueaderoComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.parqueaderoService.getParqueaderoByIdPar(parseInt(paramMap.get('id')))
+      .subscribe(res => {
+        this.datosPar = res;
+        console.log(this.datosPar);
+        //this.longitud = this.datosPar.longitud;
+        //this.latitude = this.datosPar.latitud;
+      });
+    });
+
     this.createForm();
   }
 
   onSubmit(par:ParqueaderoI): void {
-    console.log(par);
-    this.parqueaderoService.saveParqueaderos(par)
+    console.log(par,'>>>>>>>>', this.datosPar.idParquedero);
+    this.parqueaderoService.updatePar(this.datosPar.idParquedero,par)
     .subscribe(res=>{
       console.log(res.message);
-      this.router.navigate(['/mapa']);
+      this.router.navigate(['/gestionar-parqueaderos']);
     },
-    err=>console.log(err));
+    err=>console.log(err))
     
   }
   recibirLat(data:any): void {
-    this.latitude = data.lat;
-    this.longitud = data.lng;
+    this.datosPar.latitud = data.lat;
+    this.datosPar.longitud = data.lng;
     
     //console.log(">>>>>"+this.latitude);
   }
+
   
 }

@@ -22,7 +22,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Direccion:</label>
               <input type="hidden" class="form-control" formControlName="idUsuarioPar">
-              <input type="text" class="form-control" formControlName="direccion">
+              <input type="text" class="form-control" formControlName="direccion" [(ngModel)]="datosPar.direccion">
               <div *ngIf="regPark.get('direccion').touched || regPark.get('direccion').dirty">
                 <span class="text-danger" *ngIf="regPark.get('direccion').errors?.required">
                     direccion requerida
@@ -33,7 +33,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">longitud:</label>
-              <input type="number" class="form-control" formControlName="longitud" [(ngModel)]="longitud">
+              <input type="number" class="form-control" formControlName="longitud" [(ngModel)]="datosPar.longitud">
               <div *ngIf="regPark.get('longitud').touched || regPark.get('longitud').dirty">
                 <span class="text-danger" *ngIf="regPark.get('longitud').errors?.required || regPark.get('longitud').value==0 ">
                     longitud requerida
@@ -44,7 +44,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">latitud:</label>
-              <input type="number" class="form-control" formControlName="latitud" [(ngModel)]="latitude">
+              <input type="number" class="form-control" formControlName="latitud" [(ngModel)]="datosPar.latitud">
               <div *ngIf="regPark.get('latitud').touched || regPark.get('latitud').dirty">
                 <span class="text-danger" *ngIf="regPark.get('latitud').errors?.required || regPark.get('latitud').value==0">
                     latitud requerida
@@ -55,7 +55,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Precio:</label>
-              <input type="number" class="form-control" formControlName="precio">
+              <input type="number" class="form-control" formControlName="precio" [(ngModel)]="datosPar.precio">
               <div *ngIf="regPark.get('precio').touched || regPark.get('precio').dirty">
                 <span class="text-danger" *ngIf="regPark.get('precio').errors?.required">
                     precio requerido
@@ -66,7 +66,7 @@
           <div class="col-md-6  col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Hora de Apertura:</label>
-              <input type="time" class="form-control" formControlName="horaApertura">
+              <input type="time" class="form-control" formControlName="horaApertura" [(ngModel)]="datosPar.horaApertura">
               <div *ngIf="regPark.get('horaApertura').touched || regPark.get('horaApertura').dirty">
                 <span class="text-danger" *ngIf="regPark.get('horaApertura').errors?.required">
                     hora apertura requerida
@@ -77,7 +77,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Hora de Cierre:</label>
-              <input type="time" class="form-control" formControlName="horaCierre">
+              <input type="time" class="form-control" formControlName="horaCierre" [(ngModel)]="datosPar.horaCierre">
               <div *ngIf="regPark.get('horaCierre').touched || regPark.get('horaCierre').dirty">
                 <span class="text-danger" *ngIf="regPark.get('horaCierre').errors?.required">
                     hora cierre requerida
@@ -88,7 +88,7 @@
           <div class="col-md-6 col-lg-4">
             <div class="form-group">
               <label for="exampleInputEmail1">Disponibilidad de puestos:</label>
-              <input type="number" class="form-control" formControlName="puestos">
+              <input type="number" class="form-control" formControlName="puestos" [(ngModel)]="datosPar.puestos">
               <div *ngIf="regPark.get('puestos').touched || regPark.get('puestos').dirty">
                 <span class="text-danger" *ngIf="regPark.get('puestos').errors?.required">
                     campo requerida
@@ -98,7 +98,7 @@
           </div>
         </div>
         
-        <input type="submit" class="btn btn-primary  px-4 mt-4" value="Registrar" [disabled]="regPark.invalid">
+        <input type="submit" class="btn btn-primary  px-4 mt-4" value="Actualizar" [disabled]="regPark.invalid">
       </div>
 </form>
 <app-footer></app-footer>

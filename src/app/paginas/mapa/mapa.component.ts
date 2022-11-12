@@ -34,7 +34,9 @@ export class MapaComponent implements OnInit {
       console.log('>>>>>', res);
       this.parqueaderos = res;
       res.map(par=>{
-        new L.Marker([par.latitud, par.longitud]).bindPopup(`${par.direccion}<br>precio:${par.precio}`).openPopup().addTo(this.map);
+        new L.Marker([par.latitud, par.longitud])
+        .bindPopup(`${par.direccion}<br>precio:${par.precio}<br>horario:${par.horaApertura} - ${par.horaCierre}<br>puestos:${par.puestos}`)
+        .openPopup().addTo(this.map);
       })
       
     },

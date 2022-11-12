@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { LoginI, RespI, UsuarioI } from '../interfaces/usuario';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  helper = new JwtHelperService();
 
   constructor(
     private http:HttpClient,
@@ -24,12 +27,17 @@ export class AuthService {
   }
 
   loggedIn():boolean{
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('token') && this.tokenExpired()==false;
   }
 
   logout():void{
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+  }
+
+  tokenExpired(){
+    const expToken = this.helper.decodeToken(localStorage.getItem('token')).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expToken;
   }
 
 }

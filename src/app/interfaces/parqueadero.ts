@@ -26,3 +26,15 @@ export interface RespParI {
 export interface ParResI {
     message: string;
 }
+
+export interface ParkI {
+    idParquedero: number;
+    idUsuarioPar: number;
+    direccion:    string;
+    longitud:     number;
+    latitud:      number;
+    precio:       number;
+    horaApertura: string;
+    horaCierre:   string;
+    puestos:      number;
+}
