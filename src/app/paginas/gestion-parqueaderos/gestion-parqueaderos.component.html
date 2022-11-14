@@ -28,7 +28,7 @@
                         <td>{{par.puestos}}</td>
                         <td>
                             <a [routerLink]="['/parqueadero/editar',par.idParquedero]"><img class="" src="assets/img/editar-icono.png" width="25"></a> |
-                            <a (click)="deletePar(par.idParquedero)"><img class="" src="assets/img/borrar-icono.png" width="25"></a>
+                            <a style="cursor:pointer;" (click)="deletePar(par.idParquedero)"><img class="" src="assets/img/borrar-icono.png" width="25"></a>
                         </td>
                     </tr>
                 </tbody>

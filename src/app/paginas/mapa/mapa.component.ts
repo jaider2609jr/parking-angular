@@ -33,10 +33,39 @@ export class MapaComponent implements OnInit {
     this.parqueaderoService.getParqueaderos().subscribe(res => {
       console.log('>>>>>', res);
       this.parqueaderos = res;
+      var p_d = L.icon({
+        iconUrl: '../../../assets/img/p-desocupado.png',
+        
+    
+        iconSize:     [41, 41], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [20, 41], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-1, -34] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var p_o = L.icon({
+      iconUrl: '../../../assets/img/p-ocupado.png',
+      
+  
+      iconSize:     [41, 41], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [20, 41], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-1, -34] // point from which the popup should open relative to the iconAnchor
+  });
+
       res.map(par=>{
-        new L.Marker([par.latitud, par.longitud])
+        if (par.puestos==1) {
+          new L.Marker([par.latitud, par.longitud],{icon:p_o})
         .bindPopup(`${par.direccion}<br>precio:${par.precio}<br>horario:${par.horaApertura} - ${par.horaCierre}<br>puestos:${par.puestos}`)
         .openPopup().addTo(this.map);
+        }else if(par.puestos>1){
+          new L.Marker([par.latitud, par.longitud],{icon:p_d})
+          .bindPopup(`${par.direccion}<br>precio:${par.precio}<br>horario:${par.horaApertura} - ${par.horaCierre}<br>puestos:${par.puestos}`)
+          .openPopup().addTo(this.map);
+        }
+        
       })
       
     },
