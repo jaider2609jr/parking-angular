@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { DatosPersonalesComponent } from './paginas/datos-personales/datos-personales.component';
 import { EditarParqueaderoComponent } from './paginas/editar-parqueadero/editar-parqueadero.component';
 import { ErrorComponent } from './paginas/error/error.component';
 import { GestionParqueaderosComponent } from './paginas/gestion-parqueaderos/gestion-parqueaderos.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'parqueaderos-borrados', component: ParqueaderosBorradosComponent,canActivate:[AuthGuard]},
   { path: 'parqueadero/editar/:id', component: EditarParqueaderoComponent,canActivate:[AuthGuard]},
   { path: 'gestionar-vehiculos', component: GestionVehiculosComponent,canActivate:[AuthGuard]},
+  { path: 'mis-datos', component: DatosPersonalesComponent,canActivate:[AuthGuard]},
   { path: '**', component:ErrorComponent}
 ];
 

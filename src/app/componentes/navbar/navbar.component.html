@@ -19,6 +19,9 @@
         </li>
     </ul>
     <ul class="navbar-nav ms-auto ">
+      <li class="nav-item">
+        <a class="nav-link  text-light" routerLink="/mis-datos" routerLinkActive="active">Mis Datos</a>
+      </li>
       <ng-container *ngIf="authService.loggedIn()">
         <a class="nav-link  text-light" style="cursor:pointer;"(click)="authService.logout()">Cerrar Sesion</a>
       </ng-container>

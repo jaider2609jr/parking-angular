@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div>
+<div id="registro">
+    <div class="card shadow p-3 mb-5 mt-5 bg-light rounded" style="width: 60rem; margin:0 auto">
+    <form [formGroup]="editUser" (ngSubmit)="onSubmit(editUser.value)" class="px-4 d-flex">
+        <div class="card-body">
+            <h5 class="card-title mb-4"><img class="" src="assets/img/register.svg" width="50"> Mis Datos</h5>
+            
+            <div class="row">
+              <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Usuario:</label>
+                  <input type="text" class="form-control" formControlName="username" [(ngModel)]="datosPersonales.username">
+                  <div *ngIf="editUser.get('username').touched || editUser.get('username').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('username').errors?.required">
+                        nombre de usuario es requerido
+                    </span>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">password:</label>
+                  <input type="password" class="form-control" formControlName="password" [(ngModel)]="datosPersonales.password">
+                  <div *ngIf="editUser.get('password').touched || editUser.get('password').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('password').errors?.required">
+                        password es requerido
+                    </span>
+                    <span class="text-danger" *ngIf="editUser.get('password')?.errors?.minlength">
+                      minimo 6 caracteres
+                  </span>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Primer Nombre:</label>
+                  <input type="text" class="form-control" formControlName="pNombre" [(ngModel)]="datosPersonales.pNombre">
+                  <div *ngIf="editUser.get('pNombre').touched || editUser.get('pNombre').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('pNombre').errors?.required">
+                        Campo requerido
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6  col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Segundo Nombre:</label>
+                  <input type="text" class="form-control" formControlName="sNombre" [(ngModel)]="datosPersonales.sNombre">
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Primer Apellido:</label>
+                  <input type="text" class="form-control" formControlName="pApellido" [(ngModel)]="datosPersonales.pApellido">
+                  <div *ngIf="editUser.get('pApellido').touched || editUser.get('pApellido').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('pApellido').errors?.required">
+                        Campo requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Segundo Apellido:</label>
+                  <input type="text" class="form-control" formControlName="sApellido" [(ngModel)]="datosPersonales.sApellido">
+                  <div *ngIf="editUser.get('sApellido').touched || editUser.get('sApellido').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('sApellido').errors?.required">
+                        Campo requerido
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6  col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Correo:</label>
+                  <input type="email" class="form-control" formControlName="correo" [(ngModel)]="datosPersonales.correo">
+                  <div *ngIf="editUser.get('correo').touched || editUser.get('correo').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('correo').errors?.required">
+                        password es requerido
+                    </span>
+                    <span class="text-danger" *ngIf="editUser.get('correo')?.errors?.email">
+                      correo no valido
+                  </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">tipo Identificacion:</label>
+                  <select name="" id="" class="form-control form-select" formControlName="tipoId">
+                    <option selected value="">selecciona</option>
+                    <option *ngFor="let id of tipoid" value="{{id.idDet}}" >
+                      {{id.nombre}}
+                    </option>
+                  </select>
+                  <div *ngIf="editUser.get('tipoId').touched || editUser.get('tipoId').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('tipoId').errors?.required">
+                        Campo requerido
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6  col-lg-4 mt-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">N° Identificacion:</label>
+                  <input type="number" class="form-control" formControlName="numeroId" [(ngModel)]="datosPersonales.numeroId">
+                  <div *ngIf="editUser.get('numeroId').touched || editUser.get('numeroId').dirty">
+                    <span class="text-danger" *ngIf="editUser.get('numeroId').errors?.required">
+                        N° identificacion requerido
+                    </span>
+                    <span class="text-danger" *ngIf="editUser.get('numeroId')?.errors?.min">
+                      minimo 6 caracteres
+                  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary  px-4 mt-4" value="Actualizar" [disabled]="editUser.invalid">
+          </div>
+    </form>
+    </div>
+    </div>  
+  </div>  
+<app-footer></app-footer>

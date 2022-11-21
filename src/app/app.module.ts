@@ -22,6 +22,7 @@ import { ParametrosService } from './servicios/parametros.service';
 import { AuthGuard } from './auth.guard';
 import { ParqueaderosBorradosComponent } from './paginas/parqueaderos-borrados/parqueaderos-borrados.component';
 import { EditarParqueaderoComponent } from './paginas/editar-parqueadero/editar-parqueadero.component';
+import { DatosPersonalesComponent } from './paginas/datos-personales/datos-personales.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditarParqueaderoComponent } from './paginas/editar-parqueadero/editar-
     MapComponent,
     ErrorComponent,
     ParqueaderosBorradosComponent,
-    EditarParqueaderoComponent
+    EditarParqueaderoComponent,
+    DatosPersonalesComponent
   ],
   imports: [
     BrowserModule,

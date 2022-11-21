@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import { LoginI, RespI, UsuarioI } from '../interfaces/usuario';
+import { LoginI, RespI, UserRespI, UsuarioI } from '../interfaces/usuario';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
@@ -30,6 +30,14 @@ export class AuthService {
     return !!localStorage.getItem('token') && this.tokenExpired()==false;
   }
 
+  misDatos(id:number):any{
+    return this.http.get<UserRespI>(this.URL+'/usuarios/'+id);
+  }
+
+  actualizarDatos(id:number,datos:UsuarioI):any{
+    return this.http.put<any>(this.URL+'/usuarios/editar/'+id,datos);
+  }
+
   logout():void{
     localStorage.removeItem('token');
     this.router.navigate(['/']);
@@ -40,4 +48,5 @@ export class AuthService {
     return (Math.floor((new Date).getTime() / 1000)) >= expToken;
   }
 
+  
 }
