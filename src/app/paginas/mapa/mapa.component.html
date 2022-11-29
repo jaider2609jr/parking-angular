@@ -10,7 +10,20 @@
       <div id="map" style="height: 360px;"></div>
     </div>
     <div class="card-footer">
-      <a routerLink="/registrar-parqueaderos" class="btn btn-outline-dark">Crear Parqueadero</a>
+      <div class="d-flex bd-highlight align-items-center">
+        <div class="me-auto bd-highlight">
+          <a routerLink="/registrar-parqueaderos" class="btn btn-outline-dark">Crear Parqueadero</a>
+          <a class="btn btn-outline-primary ms-4" (click)="calcularRoute()">Calcular Ruta</a>
+        </div>
+        <div class="bd-highlight">
+          <span class="text-primary">
+            color Azul: mas de un puesto disponible
+          </span><br>
+          <span style="color:#FD5B1B">
+            color Naranja: solo un puesto disponible
+          </span>
+        </div>
+    </div>
     </div>
   </div>
 </div>
