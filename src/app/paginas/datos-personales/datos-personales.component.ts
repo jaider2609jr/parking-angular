@@ -6,6 +6,7 @@ import { ParametrosI } from 'src/app/interfaces/parametro';
 import { UserPostI, UsuarioI } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ParametrosService } from 'src/app/servicios/parametros.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-datos-personales',
@@ -75,7 +76,16 @@ export class DatosPersonalesComponent implements OnInit {
     this.authService.actualizarDatos(this.id_user,form)
     .subscribe( res => {
       console.log(res);
-      alert(res.message);
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       window.location.reload();
       //this.router.navigate(['/mis-datos']);
     },

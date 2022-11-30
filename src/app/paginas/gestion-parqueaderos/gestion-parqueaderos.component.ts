@@ -4,6 +4,7 @@ import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 import { RespParI } from 'src/app/interfaces/parqueadero';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestion-parqueaderos',
@@ -43,6 +44,16 @@ export class GestionParqueaderosComponent implements OnInit {
     this.parqueaderoService.deleteParqueadero(id)
     .subscribe(res =>{
       console.log(res.message);
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       this.misParqueaderos();
     },
     err => console.log(err));

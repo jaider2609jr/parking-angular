@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { LoginI } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +47,17 @@ export class LoginComponent implements OnInit {
       }else if (res.status=='ok'){
         localStorage.setItem('token',res.token);
         this.user_id = res.user_id
+        this.message = res.message;
+        Swal.fire({
+          position: 'center',
+          iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+          customClass:{
+            icon: 'border-0'
+          },
+          title: `${this.message}`,
+          showConfirmButton: false,
+          timer: 2500
+        });
         this.router.navigate(['/home'])
       }
     },

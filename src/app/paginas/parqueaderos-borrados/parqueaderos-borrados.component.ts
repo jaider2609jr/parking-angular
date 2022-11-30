@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RespParI } from 'src/app/interfaces/parqueadero';
 import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-parqueaderos-borrados',
@@ -40,6 +41,16 @@ export class ParqueaderosBorradosComponent implements OnInit {
     this.parqueaderoService.recuperarPar(id)
     .subscribe(res => {
       console.log(res);
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       this.loadParBorrados();
     },
     err => console.log(err));

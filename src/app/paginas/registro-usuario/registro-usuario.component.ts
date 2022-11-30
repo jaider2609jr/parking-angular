@@ -5,6 +5,7 @@ import { ParametrosI } from 'src/app/interfaces/parametro';
 import { UsuarioI } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ParametrosService } from 'src/app/servicios/parametros.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -51,6 +52,17 @@ export class RegistroUsuarioComponent implements OnInit {
     this.authService.registerUser(form)
     .subscribe( res => {
       console.log(res)
+      var mensaje= res.message;
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${mensaje}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       this.router.navigate(['/'])
     },
     err => console.log(err))

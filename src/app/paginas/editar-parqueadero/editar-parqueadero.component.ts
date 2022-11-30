@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ParkI, ParqueaderoI } from 'src/app/interfaces/parqueadero';
 import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-parqueadero',
@@ -73,6 +74,16 @@ export class EditarParqueaderoComponent implements OnInit {
     this.parqueaderoService.updatePar(this.datosPar.idParquedero,par)
     .subscribe(res=>{
       console.log(res.message);
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       this.router.navigate(['/gestionar-parqueaderos']);
     },
     err=>console.log(err))

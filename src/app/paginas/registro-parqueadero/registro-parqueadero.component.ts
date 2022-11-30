@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ParqueaderoI } from 'src/app/interfaces/parqueadero';
 import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro-parqueadero',
@@ -54,6 +55,16 @@ export class RegistroParqueaderoComponent implements OnInit {
     this.parqueaderoService.saveParqueaderos(par)
     .subscribe(res=>{
       console.log(res.message);
+      Swal.fire({
+        position: 'center',
+        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+        customClass:{
+          icon: 'border-0'
+        },
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 2500
+      });
       this.router.navigate(['/mapa']);
     },
     err=>console.log(err));

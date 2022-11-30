@@ -7,6 +7,7 @@ import { ParqueaderoService } from 'src/app/servicios/parqueadero.service';
 import { RespParI } from 'src/app/interfaces/parqueadero';
 import { RutasI } from 'src/app/interfaces/rutas';
 import { RutasService } from 'src/app/servicios/rutas.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -124,7 +125,16 @@ export class MapaComponent implements OnInit {
   
 
   calcularRoute():void{
-    alert("seleciona parqueadero y luego origen")
+    Swal.fire({
+      position: 'top',
+      iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+      customClass:{
+        icon: 'border-0'
+      },
+      title: 'selecciona parqueadero y luego origen',
+      showConfirmButton: false,
+      timer: 2500
+    });
     if (this.polyline!=null) {
       this.polyline.remove(this.map);
       this.polyline = null;
