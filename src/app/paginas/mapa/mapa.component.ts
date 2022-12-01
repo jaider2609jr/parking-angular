@@ -131,7 +131,7 @@ export class MapaComponent implements OnInit {
       customClass:{
         icon: 'border-0'
       },
-      title: 'selecciona parqueadero y luego origen',
+      title: 'selecciona parq. destino Y luego origen',
       showConfirmButton: false,
       timer: 2500
     });
