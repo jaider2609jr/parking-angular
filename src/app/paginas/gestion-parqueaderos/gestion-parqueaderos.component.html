@@ -3,7 +3,7 @@
 <div class="container pt-5">
     <div class="d-flex bd-highlight mt-3 align-items-center mb-2">
         <div class="me-auto p-2 bd-highlight"><span class="fs-1">Mis Parqueaderos</span></div>
-        <div class="p-2 bd-highlight"><a routerLink="/parqueaderos-borrados"><img class="" src="assets/img/papelera.png" width="45"></a></div>
+        <div class="p-2 bd-highlight"><a routerLink="/parqueaderos-borrados"><img class="" src="assets/img/papelera-rec.png" width="45"></a></div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped
@@ -27,8 +27,8 @@
                         <td>{{par.precio}}</td>
                         <td>{{par.puestos}}</td>
                         <td>
-                            <a [routerLink]="['/parqueadero/editar',par.idParquedero]"><img class="" src="assets/img/editar-icono.png" width="25"></a> |
-                            <a style="cursor:pointer;" (click)="deletePar(par.idParquedero)"><img class="" src="assets/img/borrar-icono.png" width="25"></a>
+                            <a [routerLink]="['/parqueadero/editar',par.idParquedero]"><img class="" src="assets/img/editar.png" width="25"></a> |
+                            <a style="cursor:pointer;" (click)="deletePar(par.idParquedero)"><img class="" src="assets/img/borrar.png" width="25"></a>
                         </td>
                     </tr>
                 </tbody>

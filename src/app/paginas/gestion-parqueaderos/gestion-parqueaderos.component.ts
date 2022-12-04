@@ -15,47 +15,59 @@ export class GestionParqueaderosComponent implements OnInit {
 
   helper = new JwtHelperService();
   decode_token = this.helper.decodeToken(localStorage.getItem('token'));
-  id_user:number = this.decode_token.public_id;
+  id_user: number = this.decode_token.public_id;
 
-  misPar:RespParI[]=[];
+  misPar: RespParI[] = [];
 
   constructor(
     private http: HttpClient,
     private parqueaderoService: ParqueaderoService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.misParqueaderos();
   }
 
-  misParqueaderos(): void{
+  misParqueaderos(): void {
     this.parqueaderoService.getParqueaderosById(this.id_user)
-    .subscribe(res =>{
-      console.log(res);
-      this.misPar = res;
-    },
-    err => console.log(err)
-    );
+      .subscribe(res => {
+        console.log(res);
+        this.misPar = res;
+      },
+        err => console.log(err)
+      );
   }
 
-  deletePar(id:number): void{
+  deletePar(id: number): void {
     console.log(id);
-    this.parqueaderoService.deleteParqueadero(id)
-    .subscribe(res =>{
-      console.log(res.message);
-      Swal.fire({
-        position: 'center',
-        iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
-        customClass:{
-          icon: 'border-0'
-        },
-        title: `${res.message}`,
-        showConfirmButton: false,
-        timer: 2500
-      });
-      this.misParqueaderos();
-    },
-    err => console.log(err));
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "deseas borrar este parqueadero?",
+      iconHtml: '<img src="../../../assets/img/par-coches.png" style="width: 10rem;">',
+      customClass: {
+        icon: 'border-0'
+      },
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.parqueaderoService.deleteParqueadero(id)
+          .subscribe(res => {
+            console.log(res.message);
+            Swal.fire({
+              title: 'Borrado!',
+              text: `${res.message}`,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2500
+            });
+            this.misParqueaderos();
+          },
+            err => console.log(err));
+      }
+    });
   }
 }

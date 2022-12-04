@@ -3,7 +3,7 @@
         <form [formGroup]="loginUser" (ngSubmit)="onSubmit(loginUser.value)" class="px-4 d-flex">
             <div class="card-body">
                 <div class="text-center">
-                    <img class="" src="assets/img/loginImage.png" width="50">
+                    <img class="" src="assets/img/login-img.png" width="50">
                     <h5 class="card-title mt-3">Inicio de sesion</h5>
                 </div>
 
@@ -33,7 +33,7 @@
                     {{this.message}}
                 </span>
                 </div>
-                <input type="submit" class="btn btn-primary  px-4 mt-4" value="Iniciar Sesion" [disabled]="loginUser.invalid">
+                <input type="submit" class="btn btn-dark px-4 mt-4" value="Iniciar Sesion" [disabled]="loginUser.invalid">
             </div>
         </form>
         <h6 class="text-center">No tienes cuenta? <a routerLink="/registrar-usuario">Registrate aqui!</a></h6>
